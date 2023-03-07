@@ -4,6 +4,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+// Components
+import DaftarTugas from './components/DaftarTugas.js';
 
 export default function App() {
   return (
@@ -24,6 +26,7 @@ export default function App() {
           sx={{ fontWeight: 'bold' }}
         >
           Daftar Tugas
+          <DaftarTugas />
         </Typography>
       </Box>
     </Container>
