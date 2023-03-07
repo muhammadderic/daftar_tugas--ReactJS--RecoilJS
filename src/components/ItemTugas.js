@@ -1,5 +1,8 @@
 // React
 import React from 'react';
+// Recoil
+import { useRecoilState } from 'recoil';
+import { daftarTugasState } from '../recoil_state';
 // MUI
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,8 +12,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import Input from '@mui/material/Input';
 
 export default function ItemTugas() {
+  const [daftarTugas, setDaftarTugas] = useRecoilState(daftarTugasState);
+
   return (
     <TableContainer component={Paper} sx={{ m: 2 }}>
       <Table sx={{ minWidth: 300 }} aria-label="simple table">
@@ -25,19 +31,23 @@ export default function ItemTugas() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => ( */}
-          <TableRow
-            key={1}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              Ini tugas ku
-            </TableCell>
-            <TableCell align="right">
-              <Checkbox />
-            </TableCell>
-          </TableRow>
-          {/* ))} */}
+          {daftarTugas.map((tugas) => (
+            <TableRow
+              key={tugas.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                <Input
+                  disableUnderline
+                  value={tugas.description}
+                  // onChange={(e) => setS(e.targe.value)}
+                />
+              </TableCell>
+              <TableCell align="right">
+                <Checkbox />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
